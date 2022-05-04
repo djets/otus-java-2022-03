@@ -1,6 +1,6 @@
 import java.util.Random;
 public class Test {
-    private static String[] question;
+    private static String[] questions;
     //Количество вариантов ответов.
     final static int NUMBER_OF_POSSIBLE_ANSWER = 4;
     static int[] listOfQuestionsAsked = new int[0];
@@ -8,18 +8,18 @@ public class Test {
     public static void main(String[] args) {
         int countCorrectAnswer = 0;
         int countIncorrectAnswer = 0;
-        question = Question.loadQuestion();
+        questions = Question.loadQuestion();
         //Инициализируем новый массив задданых вопросов.
-        int[] listOfQuestionsAsked = new int[question.length];
+        int[] listOfQuestionsAsked = new int[questions.length];
         //Заполняем его отрицательным значением.
-        for (int lqa = 0; lqa < Test.question.length; lqa++){
+        for (int lqa = 0; lqa < Test.questions.length; lqa++){
             listOfQuestionsAsked[lqa] = -1;
         }
-        for (int i = 0; i < question.length; i++) {
+        for (int i = 0; i < questions.length; i++) {
             int indexQuestion = getIndexQuestion();
             //Выводим вопрос.
             int s = i + 1;
-            System.out.println("Вопрос №" + s + ": " + question[indexQuestion]);
+            System.out.println("Вопрос №" + s + ": " + questions[indexQuestion]);
             if (Question.ask(indexQuestion)){
                 System.out.println("Правильный ответ. \n");
                 countCorrectAnswer++;
@@ -40,10 +40,10 @@ public class Test {
 
     static int getIndexQuestion() {
         //Получаем случайный номер вопроса.
-        int rn = randomNumber(question.length);
+        int rn = randomNumber(questions.length);
         //Проверяем был ли ранее данный номер вопроса.
         while (linearSearch(listOfQuestionsAsked, rn)) {
-            rn = randomNumber(question.length);
+            rn = randomNumber(questions.length);
         }
         return rn;
     }
