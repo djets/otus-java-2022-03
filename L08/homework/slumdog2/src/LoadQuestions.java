@@ -11,7 +11,6 @@ class LoadQuestions implements Load{
         try {
             //Считываем файл вопросов по строчно.
             List<String> listOfQuestions = Files.readAllLines(Paths.get("src/question.txt"), StandardCharsets.UTF_8);
-            //Преобразуем в массив типа String.
             return listOfQuestions;
         } catch (IOException e) {
             userOutput.print("Не найден путь к файлам вопросов");

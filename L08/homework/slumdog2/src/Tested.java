@@ -34,7 +34,7 @@ public class Tested {
         }
         //Поздравляем если ученик ответил на все вопросы правильно.
         if (countCorrectAnswer == 9){
-            System.out.println("Правильных ответов " + countCorrectAnswer + "\nПоздравляю тебя " + newUser.getNameUser() + "!!!");
+            userOutput.print("Правильных ответов " + countCorrectAnswer + "\nПоздравляю тебя " + newUser.getNameUser() + "!!!");
         }
         //Выводми количество верных и неверных ответов.
         userOutput.print("Правильных ответов " + countCorrectAnswer);
