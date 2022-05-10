@@ -8,7 +8,7 @@ class LoadAnswers implements Load{
     public List<String> load() {
         UserOutput userOutput = new ConsoleUserOutput();
         try {
-            //Считываем файл ответов по строчно.
+            //Считываем файл ответов построчно.
             List<String> listOfAnswer = Files.readAllLines(Paths.get("src/answer.txt"), StandardCharsets.UTF_8);
             return listOfAnswer;
         } catch (IOException e) {

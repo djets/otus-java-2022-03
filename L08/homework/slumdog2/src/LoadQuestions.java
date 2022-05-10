@@ -9,7 +9,7 @@ class LoadQuestions implements Load{
     public List<String> load() {
         UserOutput userOutput = new ConsoleUserOutput();
         try {
-            //Считываем файл вопросов по строчно.
+            //Считываем файл вопросов построчно.
             List<String> listOfQuestions = Files.readAllLines(Paths.get("src/question.txt"), StandardCharsets.UTF_8);
             return listOfQuestions;
         } catch (IOException e) {
