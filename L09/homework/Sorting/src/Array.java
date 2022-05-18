@@ -3,13 +3,11 @@ import java.util.Date;
 public class Array {
     private final int[] arrayBubble, arraySelection, sortedArray;
     private long sortTimeBubble, sortTimeArraySort, sortTimeSelection;
-
     public Array(int[] array){
         this.arrayBubble = array;
         this.arraySelection = Arrays.copyOf(array, array.length);
         this.sortedArray = Arrays.copyOf(array, array.length);
     }
-
     void print(){
         String arrayString = Arrays.toString(arrayBubble);
         System.out.println(arrayString);
@@ -18,7 +16,6 @@ public class Array {
         String sortedArrayString = Arrays.toString(sortedArray);
         System.out.println(sortedArrayString);
     }
-
     void bubbleSort(){
         Date start = new Date();
         for (int k = arrayBubble.length - 1; k >= 0; k--){
@@ -33,7 +30,6 @@ public class Array {
         Date end = new Date();
         sortTimeBubble = (end.getTime() - start.getTime());
     }
-
     void selectionSort(){
         Date start = new Date();
         int n = arraySelection.length;
@@ -52,7 +48,6 @@ public class Array {
         Date end = new Date();
         sortTimeSelection = (end.getTime() - start.getTime());
     }
-
     void collectionSort(){
         Date start = new Date();
         Arrays.sort(sortedArray);
