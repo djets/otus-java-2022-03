@@ -23,23 +23,12 @@ public class Bn {
             tempClient.put(k.getName(), v);
         }));
         long stop = System.nanoTime();
+        System.out.println((stop - start)/1_000_000);
         //Поиск по имени клиента
         //Java8 forEach
         tempClient.get(inNameClient(numberOfClients)).forEach((a) -> System.out.println(a.numberAcc));
         //Поиск по номеру счета
         System.out.println(tempAccount.get(inNumberAccount()));
-    }
-
-
-
-    static HashSet<Acc> getListAccounts(Cli client){
-        return client.getAccounts();
-    }
-
-    static void listAccounts(Collection<Acc> accounts){
-        for(Acc account: accounts){
-            System.out.println(account.getNumberAccount());
-        }
     }
 
     //Поиск по клиенту
@@ -57,8 +46,7 @@ public class Bn {
         Scanner inInt =  new Scanner(System.in);
         System.out.print("\nВведите номер счета: ");
         if (inInt.hasNextInt()){
-            int i = inInt.nextInt();
-            return i;
+            return inInt.nextInt();
         }
         inInt.close();
         return 0;
