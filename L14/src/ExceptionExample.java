@@ -7,10 +7,14 @@ public class ExceptionExample {
     }
     static void testException() {
         Scanner scanner = new Scanner(System.in);
-        String[] listTest = new String[]{"1. IndexExceptionExample", "2. EndlessLoopExample","3. RethrowExample","4. TryWithResourceExample"};
+        /*String[] listTest = new String[]{"1. IndexExceptionExample", "2. EndlessLoopExample","3. RethrowExample","4. TryWithResourceExample"};
         for (String s : listTest) {
             System.out.println(s);
-        }
+        }*/
+        //method reference: bounded
+        //PrintStream - public void println(String s)
+        //Consumer<T> - void accept(T t);
+        Arrays.asList("1. IndexExceptionExample", "2. EndlessLoopExample","3. RethrowExample","4. TryWithResourceExample").forEach(System.out::println);
         System.out.println("Выберите пример и введит его номер ниже:");
         int test = scanner.nextInt();
         switch (test){
