@@ -13,7 +13,7 @@ public class ExceptionExample {
         }*/
         //method reference: bounded
         //PrintStream - public void println(String s)
-        //Consumer<T> - void accept(T t);
+        //Consumer<T> - void accept(T t);1
         Arrays.asList("1. IndexExceptionExample", "2. EndlessLoopExample","3. RethrowExample","4. TryWithResourceExample").forEach(System.out::println);
         System.out.println("Выберите пример и введит его номер ниже:");
         int test = scanner.nextInt();
