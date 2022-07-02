@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="Homework L18">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="../homework/src/bootstrap-5.2.0-beta1-dist/css/bootstrap.css">
+
+    </head>
+    <body class="bg-dark">
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+       
+        <div class="container-lg">
+            <main>
+                <div class="row gx-5">
+                    <div class="text-light">
+                        <h4 class="text-center">otus-L19</h4>
+                    </div>    
+                </div>
+                
+                <div class="py-3 text-dark bg-light rounded-3 p-3">
+                    <div class="col-xxl-12">
+                        <h4 class="mb-3">Application form for students</h4>
+                        <form action="" id="studentForm" class="needs-validation" novalidate>
+                            <div class="row g-3">
+                                <div class="col-md-4">
+                                    <label for="nameStudent" class="form-label">Name:</label>
+                                    <input type="text" class="form-control" id="nameStudent" value="" required>
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Please choose a name.
+                                    </div>
+                                </div>
+                              <div class="col-md-4">
+                                <label for="birthday" class="form-label">Birthday:</label>
+                                <input type="date" class="form-control" id="birthday" value="" format="DD.MM.YYYY" required>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please provide a valid your date of birth.
+                                </div>
+                              </div>
+                              <div class="col-md-4">
+                                <label for="gender" class="form-label">Пол:</label>
+                                <select class="form-select" id="gender" required>
+                                    <option selected disabled value="">Choose...</option>
+                                    <option value="Мужской">Male</option>
+                                    <option value="Женский">Female</option>
+                                </select>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please select a valid gender.
+                                </div>
+                              </div>
+
+                            </div>
+                            <hr class="my-4">
+                            <button type="button submit" class="w-50 btn btn-primary btn-sm" value="">Add Student</button>
+                        </form>
+                    </div>
+                    <br>
+                    <h2>Section title</h2>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-sm" id="tableStudents">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>    
+                                        <th>Birthday</th>
+                                        <th>Gender</th>
+                                        <th>Age</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbodyTable">
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>Average age of students</th>
+                                        <th></th>
+                                        <th></th>
+                                        <th id="averangeAge">0</th>
+                                    </tr>
+                                </tfoot>
+                            <tbody>
+                            </tbody>    
+                            </table>
+                        </div>
+                </div>
+            </main>
+        </div>
+
+        <script>
+            "use strict"
+            
+
+            function deleteRow(row)
+                {
+                    var i=row.parentNode.parentNode.rowIndex;
+                    document.getElementById('POITable').deleteRow(i);
+                }
+
+            function insRow()
+                {
+                    let nameStudent = document.getElementById("nameStudent");
+                    let Birthday = document.getElementById("birthday");
+                    let gender = document.getElementById("gender");
+                    let birthdayDate = new Date(Birthday.value);
+                    let tbody = document.getElementById('tbodyTable').insertRow();
+                    let c1 = tbody.insertCell(0);
+                    let c2 = tbody.insertCell(1);
+                    let c3 = tbody.insertCell(2);
+                    let c4 = tbody.insertCell(3);
+                    c1.innerHTML = nameStudent.value;
+                    c2.innerHTML = birthdayDate.toLocaleDateString();
+                    c3.innerHTML = gender.value;
+                    c4.innerHTML = getAge(birthdayDate);
+                    c4.classList.add("age");
+                    averangeAgeOfStudents();
+                }
+
+                function averangeAgeOfStudents() {
+                    let table = document.getElementById('tableStudents');
+                    let tds = table.querySelectorAll('.age');
+                    let avr = 0;
+                    for (var i = 0; i < tds.length; i++) {		
+                            avr += Number(tds[i].innerHTML);
+                            averangeAge.innerHTML = avr / tds.length;
+                    }  
+                }
+
+                function getAge(birthdayDate) {
+                        return Math.floor((new Date() - birthdayDate) / 1000 / 60 / 60 / 24 / 365);
+                    }
+
+            //Example Bootstrap Doc
+            //https://getbootstrap.com/docs/5.2/forms/validation/#custom-styles    
+            (() => {
+                'use strict'
+
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                const forms = document.querySelectorAll('.needs-validation')
+
+                // Loop over them and prevent submission
+                Array.from(forms).forEach(form => {
+                    form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()                        
+                    } else {
+                        insRow()
+                        event.preventDefault()
+                        event.stopPropagation()    
+                    }
+
+                    form.classList.add('was-validated')
+                    
+                    }, false)
+                })
+            })()
+        </script>
+    </body>
+</html>></DOc>
