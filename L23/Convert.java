@@ -1,20 +1,15 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
-
+import src.appService.InputService;
 import src.appService.OutputService;
 import src.appService.SpliteratorString;
-import src.appService.ConvertService;
-import src.appService.InputService;
-import src.domain.Currency;
-import src.domain.CurrencyRubles;
-import src.domain.NumbersOfWords;
-import src.services.ConvertNumberToWords;
 import src.services.InputConsole;
 import src.services.OutputConsole;
 import src.services.SpliteratorStringWithNumbers;
 import src.test.ConvertNumberToWordsTest;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
 
 class Convert {
 
