@@ -1,6 +1,6 @@
 package src.appService;
 
-public interface InputService {
-  public String inputString();
+public interface InputService<T> {
+  public T inputString();
 }
 

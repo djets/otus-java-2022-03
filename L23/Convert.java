@@ -1,150 +1,68 @@
+import src.appService.ConvertService;
 import src.appService.InputService;
 import src.appService.OutputService;
-import src.appService.SpliteratorString;
+import src.appService.Spliterator;
+import src.services.ConvertToRusOld;
+import src.services.ConvertToRus;
 import src.services.InputConsole;
 import src.services.OutputConsole;
 import src.services.SpliteratorStringWithNumbers;
-import src.test.ConvertNumberToWordsTest;
+import src.test.ConvertToRusTest;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
 
 class Convert {
 
-private String number;
-
-private final List <String> one = new ArrayList<>(Arrays.asList("ноль","один","два", "три", "четыре", "пять", "шесть", "семь", "восемь", "девять"));
-private final List <String> ten = new ArrayList<>(Arrays.asList("десять","одинадцать","двенадцать","тринадцать", "четырнадцать", "пятьнадцать", "шестьнадцать", "семнадцать", "восемнадцать", "девятнадцать"));
-public List<String> getTen() {
-    return ten;
-}
-
-private final List <String> ten1 = new ArrayList<>(Arrays.asList(null, "дцать","дцать","дцать", "дцать", "дцать", "дцать", "дцать", "дцать", "дцать"));
-
-
-
-
-public List<String> getTen1() {
-    return ten1;
-}
-
-Convert () {
-    number = inString();    
-}
-
-public String getNumber() {
-    return number;
-}
-
-public void setNumber(String number) {
-    this.number = number;
-}
-public List<String> getOne() {
-    return one;
-}
-
-
-
-    
 public static void main(String[] args) {
-    //Convert convert = new Convert();
-    //int num = Integer.parseInt(convert.getNumber());
-   
-    //System.out.println(convert.getNumber().contains("."));
+    //InputConsole inputConsole = new InputConsole();
+    //OutputService outConsole = new OutputConsole();
+    //Spliterator split = new SpliteratorStringWithNumbers();
+    //split.spliterator(inputConsole.inputString());
+    //split.getListNumbers();
+    //ConvertToRus convertToRus = new ConvertToRus(split.getListNumbers());
+    //outConsole.outputStrings(convertToRus.convert() + Currency.RUB.declination(split.getListNumbers().peekLast())); 
     
-    //System.out.println(convert.getNumber().length());
     
     
-   //System.out.println(isDouble(convert.getNumber()));
-   //System.out.println(Double.parseDouble(convert.getNumber()));
-   /* 
-   if(num <= convert.getOne().size())
-    System.out.println(convert.getOne().get(num));
-    if (convert.getNumber().length() > 1 && convert.getNumber().length() < 3)
-    System.out.println(convert.getOne().get(num) + "цать");
-    
-    List<String> myList = new ArrayList<String>(Arrays.asList(convert.getNumber().split("")));
-    myList.forEach((v) -> System.out.println(v));
-    myList.forEach
-    (
-        (v) -> System.out.println(convert.getOne().get((Integer.parseInt(v))))
-    );
-    CurrencyRubles rubles = new CurrencyRubles("рубль", "руб.");
+    //ConvertToRusNew convertRu = new ConvertToRusNew();
+    //outConsole.outputStrings(convertRu.convert(split.getListNumbers()));
+    //outConsole.outputStrings(convertRu.convert(split.getListNumbers()) + Currency.RUB.declination(split.getListNumbers().peekLast())); 
+    //System.out.println(split.getListNumbers().get(split.getListNumbers().size() - 1));
+ 
 
-    if (myList.size() == 2) { 
-        if(Integer.parseInt(myList.get(0)) == 1) {
-            System.out.println(convert.getTen().get(Integer.parseInt(myList.get(1))));
-        } else {
-            String one = convert.getOne().get(Integer.parseInt(myList.get(0)));
-            String two = convert.getTen1().get(Integer.parseInt(myList.get(0)));
-            String three = convert.getOne().get(Integer.parseInt(myList.get(1)));
-            System.out.println(one + two + " " + three + " " + rubles.getShortName());
-            OutputService outConsole = new OutputConsole();
-            outConsole.outputStrings(one + two + " " + three + " " + rubles.getShortName());
-            
-        }
-    }
-     */
-    
-    InputService inputConsole = new InputConsole();
-    OutputService outConsole = new OutputConsole();
-    SpliteratorString split = new SpliteratorStringWithNumbers();
-
-    ConvertNumberToWordsTest t = new ConvertNumberToWordsTest();
+    ConvertToRusTest t = new ConvertToRusTest();
     t.testConvert();
+}
 
-    /*
-    outConsole.outputStrings();
-    split.spliteratorString(inputConsole.inputString());
-    split.getListNumbers();
-    outConsole.outputStrings(new ConvertNumberToWords().convert(split.getListNumbers(), new NumbersOfWords().getWordsList())); */
-    //split.spliteratorString(inputConsole.inputString()).forEach(v -> outConsole.outputStrings(v.toString()));
 
-   
-    //System.out.println(((SpliteratorStringWithNumbers) split).getLinkedHashMapNumbers().size());
-//((SpliteratorStringWithNumbers) split).getLinkedHashMapNumbers().forEach((k, v) -> outConsole.outputStrings(k.toString() +"--" + v.toString()));
-
-    
-    
+enum Currency {
+    RUB{
+        public String declination(int lastNumber) {
+            if(lastNumber == 1)
+                return new String(" рубль");
+            if(lastNumber >= 2 && lastNumber <= 4)
+                return new String(" рубля");
+            if(lastNumber >=5 || lastNumber <=9 || lastNumber == 0)
+                return new String(" рублей");
+            return new String(" руб.");
+        }
+    },
+    DOLLAR{
+        public String declination(int lastNumber) {
+            if(lastNumber == 1)
+                return new String(" доллар");
+            if(lastNumber >= 2 || lastNumber <= 4)
+                return new String(" доллара");
+            if(lastNumber >=5 || lastNumber <=9 || lastNumber == 0)
+                return new String(" долларов");
+            return new String(" млн.");
+        };
+    };
+        public abstract String declination(int lastNumber);   
+    } 
     
     
 }
 
 
-
-
-
-
-static boolean isDouble(String str) {
-    try {
-        Double.parseDouble(str);
-        return true;
-    } catch (NumberFormatException e) {
-        return false;
-    }
-}
-
-static boolean isInteger(String str) {
-    try {
-        Integer.parseInt(str);
-        return true;
-    } catch (NumberFormatException e) {
-        return false;
-    }
-}
-
-static String inString(){
-    try (Scanner scanner = new Scanner(System.in)) {
-        return new String(scanner.nextLine());       
-    } catch (Exception e) {
-        //TODO: handle exception
-        return e.getMessage();
-    }
-    
-}
-
-}
 
 

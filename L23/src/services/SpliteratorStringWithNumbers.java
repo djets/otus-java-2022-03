@@ -1,24 +1,26 @@
 package src.services;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import src.appService.SpliteratorString;
+import src.appService.Spliterator;
 import src.exception.DoubleInputException;
 
-public class SpliteratorStringWithNumbers implements SpliteratorString{
+public class SpliteratorStringWithNumbers implements Spliterator{
 
-    private List<Integer> listOfIntegers = new ArrayList<>();
+    //private List<Integer> listOfIntegers = new ArrayList<>();
+    private ArrayDeque<Integer> listOfIntegers = new ArrayDeque<>();
     
     @Override
-    public void spliteratorString(String number) {
-        List<String> listOfNumberByString = new ArrayList<String>(Arrays.asList(number.split("")));
+    public void spliterator(String numbers) {
+        List<String> listOfNumberByString = new ArrayList<String>(Arrays.asList(numbers.split("")));
         //listOfNumberByString.forEach(System.out::println);
         listOfNumberByString.forEach(v -> listOfIntegers.add(numberParseInt(v))); //не обработаны исключения
     }
 
     @Override
-    public List<Integer> getListNumbers() {
+    public ArrayDeque<Integer> getListNumbers() {
         return listOfIntegers;
     }
     

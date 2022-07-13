@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import src.appService.InputService;
 
-public class InputConsole implements InputService {
+public class InputConsole implements InputService<String> {
 private final Scanner in;
 
 public InputConsole() {
