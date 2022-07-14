@@ -3,6 +3,9 @@
 *.iml
 *out/
 
+#Gradle
+.gradle
+
 # Compiled class file
 *.class
 

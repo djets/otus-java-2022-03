@@ -1,0 +1,63 @@
+correct: пять
+Test number 5
+[1;32mTEST PASSED[0m
+correct: семь
+Test number 7
+[1;32mTEST PASSED[0m
+correct: одинадцать
+Test number 11
+[1;32mTEST PASSED[0m
+correct: двенадцать
+Test number 12
+[1;32mTEST PASSED[0m
+correct: тринадцать
+Test number 13
+[1;32mTEST PASSED[0m
+"correct: четырнадцать
+Test number 14
+[1;32mTEST PASSED[0m
+!correct: двадцать два
+Test number 22
+[1;32mTEST PASSED[0m
+correct: пятьдесят
+Test number 50
+[1;32mTEST PASSED[0m
+correct: девяносто
+Test number 90
+[1;32mTEST PASSED[0m
+)correct: девяносто восемь
+Test number 98
+[1;32mTEST PASSED[0m
+correct: сорок
+Test number 40
+[1;32mTEST PASSED[0m
+!correct: сорок четыре
+Test number 44
+[1;32mTEST PASSED[0m
+ correct: шестнадцать
+Test number 16
+[1;32mTEST PASSED[0m
+4correct: триста двадцать восемь
+Test number 328
+[1;32mTEST PASSED[0m
+correct: пятьсот
+Test number 500
+[1;32mTEST PASSED[0m
+0correct: семьсот сорок восемь
+Test number 748
+[1;32mTEST PASSED[0m
+tcorrect: девятьсот восемьдесят три тысячи пятьсот шестьдесят пять
+Test number 983565
+[1;32mTEST PASSED[0m
+Tcorrect: двести три миллиона восемьсот девяносто
+Test number 203000890
+[1;32mTEST PASSED[0m
+%correct: четыреста один
+Test number 401
+[1;32mTEST PASSED[0m
+fcorrect: сто двадцать три тысячи четыреста пятьдесят шесть
+Test number 123456
+[1;32mTEST PASSED[0m
+)correct: пятнадцать тысяч
+Test number 15000
+[1;32mTEST PASSED[0m

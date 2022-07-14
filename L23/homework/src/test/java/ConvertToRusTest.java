@@ -1,24 +1,12 @@
-package src.test.java;
+import Convert.services.ConvertToRus;
+import Convert.services.SpliteratorStringWithNumbers;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.*;
-import src.main.java.convert.services.ConvertToRus;
-import src.main.java.convert.services.SpliteratorStringWithNumbers;
-
 public class ConvertToRusTest {
-
-    @Before
-    public void setUp() throws Exception {
-        
-    }
-
-    @AfterClass
-    public static void afterClass() throws Exception {
-
-    }
 
     @Test
     public void testConvert() {
@@ -45,20 +33,6 @@ public class ConvertToRusTest {
             }
 
         }
-
-    }
-
-
-
-
-
-    @After
-    public void tearDown() throws Exception {
-
-    }
-
-    @BeforeClass
-    public static void beforeClass() throws Exception {
 
     }
 }
