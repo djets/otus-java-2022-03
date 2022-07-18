@@ -1,5 +1,7 @@
 package Convert.services;
 
+import java.util.ArrayDeque;
+
 import Convert.appService.OutputService;
 import Convert.domain.AvailableCurrency;
 
@@ -13,10 +15,10 @@ public class appRuner {
         runConvert();  
     }
     static void runConvert(){
-        SpliteratorStringWithNumbers split = new SpliteratorStringWithNumbers();
-        split.spliterator(inputConsole.inputString());
+        
+        ArrayDeque<Integer> split = SpliteratorStringWithNumbers.spliterator(inputConsole.inputString());
         ConvertToRus convertToRus = new ConvertToRus();
-        int lastChar = split.getListNumbers().peekLast();
-        outConsole.outputStrings(convertToRus.convert(split.getListNumbers()) + AvailableCurrency.RUB.declinationCurrency(lastChar));
+        int lastChar = split.peekLast();
+        outConsole.outputStrings(convertToRus.convert(split) + AvailableCurrency.RUB.declinationCurrency(lastChar));
     }
 }

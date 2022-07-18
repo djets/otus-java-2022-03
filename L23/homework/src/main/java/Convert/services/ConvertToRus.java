@@ -8,8 +8,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ConvertToRus implements ConvertService<ArrayDeque<Integer>, String>{
-    
-    private static String convertString;
+
+    public String getConvertString() {
+        return convertString;
+    }
+
+    public void setConvertString(String convertString) {
+        this.convertString = convertString;
+    }
+
+    private String convertString;
 
     public ConvertToRus(){
         convertString = "";
@@ -32,7 +40,7 @@ public class ConvertToRus implements ConvertService<ArrayDeque<Integer>, String>
         } else {
             numberOfBlocks = inputStringsNumber.size() / 3;
             transmittedRemainsOfBlocks = 3;
-        };
+        }
 
         for(int i = 0; i < numberOfBlocks; i++){
             //Инициализация блока с тремя или менее числами
@@ -65,7 +73,7 @@ public class ConvertToRus implements ConvertService<ArrayDeque<Integer>, String>
     }
 
     //Преобразование трехзначных чисел
-    static void upToAThousand(List<Integer> blocks, List<String> wordsList, int transmittedRemainsOfBlocks){
+    void upToAThousand(List<Integer> blocks, List<String> wordsList, int transmittedRemainsOfBlocks){
         if(transmittedRemainsOfBlocks == 3){
             if(blocks.get(0) == 1) {
                 convertString += wordsList.get(17) + " ";
@@ -89,7 +97,7 @@ public class ConvertToRus implements ConvertService<ArrayDeque<Integer>, String>
         } else {upToAHundred(blocks, transmittedRemainsOfBlocks, wordsList, 0);}
     }
     //Преобразование двухзначных чисел
-    static void upToAHundred(List<Integer> blocks, int transmittedRemainsOfBlocks, List<String> wordsList, int i){
+    void upToAHundred(List<Integer> blocks, int transmittedRemainsOfBlocks, List<String> wordsList, int i){
         //0-9
         if(transmittedRemainsOfBlocks == 1) {
             convertString += wordsList.get(blocks.get(0 + i));
