@@ -8,16 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ConvertToRus implements ConvertService<ArrayDeque<Integer>, String>{
-
-    public String getConvertString() {
-        return convertString;
-    }
-
-    public void setConvertString(String convertString) {
-        this.convertString = convertString;
-    }
-
-    private String convertString;
+    
+    protected String convertString;
 
     public ConvertToRus(){
         convertString = "";
@@ -40,7 +32,7 @@ public class ConvertToRus implements ConvertService<ArrayDeque<Integer>, String>
         } else {
             numberOfBlocks = inputStringsNumber.size() / 3;
             transmittedRemainsOfBlocks = 3;
-        }
+        };
 
         for(int i = 0; i < numberOfBlocks; i++){
             //Инициализация блока с тремя или менее числами

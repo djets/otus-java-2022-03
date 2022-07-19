@@ -9,8 +9,6 @@ import java.util.List;
 
 public class SpliteratorStringWithNumbers {
 
-    //private ArrayDeque<Integer> listOfIntegers = new ArrayDeque<>();
-    
     //@Override
     public static ArrayDeque<Integer> spliterator(String numbers) {
         List<String> listOfNumberByString = new ArrayList<String>(Arrays.asList(numbers.split("")));
@@ -25,18 +23,12 @@ public class SpliteratorStringWithNumbers {
         });
         return listOfIntegers;
     }
-/*
-    //@Override
-    public ArrayDeque<Integer> getListNumbers() {
-       return listOfIntegers;
-    }
-     */
+
     static int numberParseInt (String number) throws DoubleInputException{
         try {
             return Integer.parseInt(number);
         } catch (Exception e) {
             throw new DoubleInputException("Ввод не целого числа."); 
-        }  
-        //return 0; 
+        } 
     }
 }

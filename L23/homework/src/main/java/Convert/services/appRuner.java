@@ -11,14 +11,20 @@ public class appRuner {
     
     public static void run(){
         outConsole.outputStrings("Проектная работа по курсу OTUS Java.Developer.Basic 2022.\nПриложение - Цена прописью.\n");
-        outConsole.outputStrings("Введите цену для конвертации цены \nили наберите \"exit\" для выхода из программы.");
-        runConvert();  
+        outConsole.outputStrings("Введите целое число для конвертации цены \nили наберите \"exit\" для выхода из программы.");
+        try {
+            runConvert();
+        } catch (Exception e) {
+            e.getMessage();
+        }  
     }
-    static void runConvert(){
-        
+    static void runConvert() throws Exception{
         ArrayDeque<Integer> split = SpliteratorStringWithNumbers.spliterator(inputConsole.inputString());
-        ConvertToRus convertToRus = new ConvertToRus();
         int lastChar = split.peekLast();
-        outConsole.outputStrings(convertToRus.convert(split) + AvailableCurrency.RUB.declinationCurrency(lastChar));
+        try {
+           outConsole.outputStrings(new ConvertToRus().convert(split) + AvailableCurrency.RUB.declinationCurrency(lastChar));
+        } catch (Exception e) {
+           throw new Exception("Ошибка конвертации.");
+        }
     }
 }

@@ -15,7 +15,6 @@ public class OutputConsole implements OutputService {
 
     @Override
     public void outputStrings(String ... strings) {
-       //System.out.println(strings);
        Arrays.asList(strings).forEach(out::println);
     } 
 }
