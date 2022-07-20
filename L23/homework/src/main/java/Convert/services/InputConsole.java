@@ -2,13 +2,14 @@ package Convert.services;
 
 import Convert.appService.InputService;
 
+import java.io.InputStream;
 import java.util.Scanner;
 
 public class InputConsole implements InputService<String> {
 private final Scanner in;
 
-public InputConsole() {
-    in = new Scanner(System.in);
+public InputConsole(InputStream in) {
+    this.in = new Scanner(in);
 }
     @Override
     public String inputString() {

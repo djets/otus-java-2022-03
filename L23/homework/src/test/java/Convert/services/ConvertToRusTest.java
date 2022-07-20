@@ -26,10 +26,8 @@ public class ConvertToRusTest {
         "двести три миллиона восемьсот девяносто", "четыреста один", "сто двадцать три тысячи четыреста пятьдесят шесть",
         "пятнадцать тысяч"));
 
-        numListTest.forEach(v -> {
-            assertThat(new ConvertToRus().convert(SpliteratorStringWithNumbers.spliterator(Integer.toString(v))))
-            .isNotNull().isEqualTo(wordsListTest.get(numListTest.indexOf(v)));
-        }
+        numListTest.forEach(v -> assertThat(new ConvertToRus().convert(SpliteratorStringWithNumbers.spliterator(Integer.toString(v))))
+        .isNotNull().isEqualTo(wordsListTest.get(numListTest.indexOf(v)))
         );
 
     }

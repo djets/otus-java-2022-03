@@ -20,41 +20,41 @@ public class ConvertToRus implements ConvertService<ArrayDeque<Integer>, String>
 
         List<String> wordsList = NumbersOfWordsRus.getWordsList();
         //передоваемый остаток  
-        int transmittedRemainsOfBlocks;
+        int transmittedRemainderInTheBlock;
         //Количество делений
-        int numberOfBlocks;
+        int numbersOfBlocks;
         //остаток
         int remainsOfBlocks = inputStringsNumber.size() % 3;
            
         if(remainsOfBlocks > 0){
-            numberOfBlocks = inputStringsNumber.size() / 3 + 1;
-            transmittedRemainsOfBlocks = remainsOfBlocks;
+            numbersOfBlocks = inputStringsNumber.size() / 3 + 1;
+            transmittedRemainderInTheBlock = remainsOfBlocks;
         } else {
-            numberOfBlocks = inputStringsNumber.size() / 3;
-            transmittedRemainsOfBlocks = 3;
+            numbersOfBlocks = inputStringsNumber.size() / 3;
+            transmittedRemainderInTheBlock = 3;
         };
 
-        for(int i = 0; i < numberOfBlocks; i++){
+        for(int i = 0; i < numbersOfBlocks; i++){
             //Инициализация блока с тремя или менее числами
             List<Integer> blocks = new ArrayList<>();
-            for (int p = 1; p <= transmittedRemainsOfBlocks; p++) {
+            for (int p = 1; p <= transmittedRemainderInTheBlock; p++) {
                 blocks.add((inputStringsNumber.pollFirst()));
             }
             //Вызов метода конвертации блока чисел
-            upToAThousand(blocks, wordsList, transmittedRemainsOfBlocks);
+            upToAThousand(blocks, wordsList, transmittedRemainderInTheBlock);
             //Проверка на присутсвие в блоке только нулей
             if(!checkingFullZero(blocks)) {
                 //проверка на окончание в блоке от 10 до 19
                 if(blocks.size() > 1 && blocks.get(blocks.size() - 2) == 1) {
-                    convertString += getNumeralString(numberOfBlocks, i, 5);
+                    convertString += getNumeralString(numbersOfBlocks, i, 5);
                 } else {
-                    convertString += getNumeralString(numberOfBlocks, i, blocks.get(blocks.size() - 1));
+                    convertString += getNumeralString(numbersOfBlocks, i, blocks.get(blocks.size() - 1));
                 }
             }
-            if(i < numberOfBlocks - 1){
+            if(i < numbersOfBlocks - 1){
                 convertString += " ";
             }
-            transmittedRemainsOfBlocks = 3;
+            transmittedRemainderInTheBlock = 3;
         }
         //Удаление пробелов в конце строки
         if(convertString.endsWith(" ")){
@@ -65,8 +65,8 @@ public class ConvertToRus implements ConvertService<ArrayDeque<Integer>, String>
     }
 
     //Преобразование трехзначных чисел
-    void upToAThousand(List<Integer> blocks, List<String> wordsList, int transmittedRemainsOfBlocks){
-        if(transmittedRemainsOfBlocks == 3){
+    void upToAThousand(List<Integer> blocks, List<String> wordsList, int transmittedRemainderInTheBlock){
+        if(transmittedRemainderInTheBlock == 3){
             if(blocks.get(0) == 1) {
                 convertString += wordsList.get(17) + " ";
             }
@@ -81,21 +81,21 @@ public class ConvertToRus implements ConvertService<ArrayDeque<Integer>, String>
             }
             
             if(!checkingZero(blocks)) {
-                transmittedRemainsOfBlocks -= 1;  
-                upToAHundred(blocks, transmittedRemainsOfBlocks, wordsList, 1);     
+                transmittedRemainderInTheBlock -= 1;  
+                upToAHundred(blocks, transmittedRemainderInTheBlock, wordsList, 1);     
             } else {
                 convertString = convertString.substring(0, convertString.length() - 1);
             }
-        } else {upToAHundred(blocks, transmittedRemainsOfBlocks, wordsList, 0);}
+        } else {upToAHundred(blocks, transmittedRemainderInTheBlock, wordsList, 0);}
     }
     //Преобразование двухзначных чисел
-    void upToAHundred(List<Integer> blocks, int transmittedRemainsOfBlocks, List<String> wordsList, int i){
+    void upToAHundred(List<Integer> blocks, int transmittedRemainderInTheBlock, List<String> wordsList, int i){
         //0-9
-        if(transmittedRemainsOfBlocks == 1) {
+        if(transmittedRemainderInTheBlock == 1) {
             convertString += wordsList.get(blocks.get(0 + i));
         }
         
-        if(transmittedRemainsOfBlocks == 2){
+        if(transmittedRemainderInTheBlock == 2){
             if(blocks.get(0 + i) == 0){
                 convertString += wordsList.get(blocks.get(1 + i));
             } 
@@ -156,7 +156,7 @@ public class ConvertToRus implements ConvertService<ArrayDeque<Integer>, String>
     //Разряды чисел
     enum Numerals {
         THOUSANDS {
-            public String declination(int lastNumber) {
+            public String declension(int lastNumber) {
                 if(lastNumber == 1)
                     return new String(" тысяча ");
                 if(lastNumber >= 2 && lastNumber <= 4)
@@ -167,7 +167,7 @@ public class ConvertToRus implements ConvertService<ArrayDeque<Integer>, String>
             }
         },
         MILLIONS{
-            public String declination(int lastNumber) {
+            public String declension(int lastNumber) {
                 if(lastNumber == 1)
                     return new String(" миллион ");
                 if(lastNumber >= 2 && lastNumber <= 4)
@@ -178,7 +178,7 @@ public class ConvertToRus implements ConvertService<ArrayDeque<Integer>, String>
             }
         },
         MILLIARDS{
-            public String declination(int lastNumber) {
+            public String declension(int lastNumber) {
                 if(lastNumber == 1)
                     return new String(" миллиард ");
                 if(lastNumber >= 2 && lastNumber <= 4)
@@ -188,30 +188,30 @@ public class ConvertToRus implements ConvertService<ArrayDeque<Integer>, String>
                 return new String(" мрд. ");
             }
         };
-        public abstract String declination(int lastNumber);   
+        public abstract String declension(int lastNumber);   
     }
     //Запрос разряда числа
     private static String getNumeralString(int iterationQuantity, int iterate, int lastNum) {
         
         if(iterate == 0 && iterationQuantity == 2) {
-            return Numerals.THOUSANDS.declination(lastNum);
+            return Numerals.THOUSANDS.declension(lastNum);
         }
 
         if(iterate == 0 && iterationQuantity == 3) {
-            return Numerals.MILLIONS.declination(lastNum);
+            return Numerals.MILLIONS.declension(lastNum);
         }
         if(iterate == 1 && iterationQuantity == 3) {
-            return Numerals.THOUSANDS.declination(lastNum);
+            return Numerals.THOUSANDS.declension(lastNum);
         }
 
         if(iterate == 0 && iterationQuantity == 4) {
-            return Numerals.MILLIARDS.declination(lastNum);
+            return Numerals.MILLIARDS.declension(lastNum);
         }
         if(iterate == 1 && iterationQuantity == 4) {
-            return Numerals.MILLIONS.declination(lastNum);
+            return Numerals.MILLIONS.declension(lastNum);
         }
         if(iterate == 2 && iterationQuantity == 4) {
-            return Numerals.THOUSANDS.declination(lastNum);
+            return Numerals.THOUSANDS.declension(lastNum);
         }
 
         return "";

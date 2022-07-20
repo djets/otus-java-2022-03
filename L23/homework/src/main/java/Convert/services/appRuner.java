@@ -6,8 +6,8 @@ import Convert.appService.OutputService;
 import Convert.domain.AvailableCurrency;
 
 public class appRuner {
-    private static InputConsole inputConsole = new InputConsole();
-    private static OutputService outConsole = new OutputConsole();
+    private static InputConsole inputConsole = new InputConsole(System.in);
+    private static OutputService outConsole = new OutputConsole(System.out);
     
     public static void run(){
         outConsole.outputStrings("Проектная работа по курсу OTUS Java.Developer.Basic 2022.\nПриложение - Цена прописью.\n");

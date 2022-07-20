@@ -7,10 +7,10 @@ import java.util.Arrays;
 
 public class OutputConsole implements OutputService {
 
-    private final PrintStream out;
+    private PrintStream out;
 
-    public OutputConsole() {
-        out = System.out;
+    public OutputConsole(PrintStream out) {
+        this.out = out;
     }
 
     @Override

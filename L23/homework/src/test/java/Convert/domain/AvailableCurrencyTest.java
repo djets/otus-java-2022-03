@@ -12,9 +12,7 @@ public class AvailableCurrencyTest {
     void testDeclinationCurrency() throws Exception{
         List<Integer> listLastNumberTest = new ArrayList<>(Arrays.asList(1, 2, 6, 0));
         List<String> listDeclinationTest = new ArrayList<>(Arrays.asList("рубль", "рубля", "рублей", "рублей"));
-        listLastNumberTest.forEach(v -> {
-            assertThat(AvailableCurrency.RUB.declinationCurrency(v).replace(" ", ""))
-            .isEqualTo(listDeclinationTest.get(listLastNumberTest.indexOf(v)));
-        });   
+        listLastNumberTest.forEach(v -> assertThat(AvailableCurrency.RUB.declinationCurrency(v).replace(" ", ""))
+        .isEqualTo(listDeclinationTest.get(listLastNumberTest.indexOf(v))));
     }
 }
