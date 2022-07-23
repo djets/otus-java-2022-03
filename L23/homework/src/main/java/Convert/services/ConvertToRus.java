@@ -32,7 +32,7 @@ public class ConvertToRus implements ConvertService<ArrayDeque<Integer>, String>
         } else {
             numbersOfBlocks = inputStringsNumber.size() / 3;
             transmittedRemainderInTheBlock = 3;
-        };
+        }
 
         for(int i = 0; i < numbersOfBlocks; i++){
             //Инициализация блока с тремя или менее числами
@@ -92,15 +92,15 @@ public class ConvertToRus implements ConvertService<ArrayDeque<Integer>, String>
     void upToAHundred(List<Integer> blocks, int transmittedRemainderInTheBlock, List<String> wordsList, int i){
         //0-9
         if(transmittedRemainderInTheBlock == 1) {
-            convertString += wordsList.get(blocks.get(0 + i));
+            convertString += wordsList.get(blocks.get(i));
         }
         
         if(transmittedRemainderInTheBlock == 2){
-            if(blocks.get(0 + i) == 0){
+            if(blocks.get(i) == 0){
                 convertString += wordsList.get(blocks.get(1 + i));
             } 
             //11-19
-            if(blocks.get(0 + i) == 1){
+            if(blocks.get(i) == 1){
 
                 if(blocks.get(1) != 3){
                     final String numberWords = wordsList.get(blocks.get(1 + i));
@@ -108,7 +108,7 @@ public class ConvertToRus implements ConvertService<ArrayDeque<Integer>, String>
                         convertString += numberWords.substring(0, numberWords.length() - 1) + "енадцать";
                     } else {
                         //10
-                        if(blocks.get(0 + i) == 1 && blocks.get(1 + i) == 0) {
+                        if(blocks.get(i) == 1 && blocks.get(1 + i) == 0) {
                             convertString += wordsList.get(10) + "->";
                         } else {
                             convertString += numberWords.substring(0, numberWords.length() - 1)+ "надцать";
@@ -119,15 +119,15 @@ public class ConvertToRus implements ConvertService<ArrayDeque<Integer>, String>
                 }
             } else {
                 //20-39 
-                if(blocks.get(0 + i) == 2 || blocks.get(0 + i) == 3){
+                if(blocks.get(i) == 2 || blocks.get(i) == 3){
                     if(blocks.get(1) == 0){
-                        convertString += wordsList.get(blocks.get(0 + i)) + "дцать";
+                        convertString += wordsList.get(blocks.get(i)) + "дцать";
                     } else {
-                        convertString += wordsList.get(blocks.get(0 + i)) + "дцать " + wordsList.get(blocks.get(1 + i));
+                        convertString += wordsList.get(blocks.get(i)) + "дцать " + wordsList.get(blocks.get(1 + i));
                     }
                 }
                 //40-49
-                if((blocks.get(0 + i) == 4)) {
+                if((blocks.get(i) == 4)) {
                     if(blocks.get(1 + i) == 0){
                         convertString += wordsList.get(14);
                     } else {
@@ -135,7 +135,7 @@ public class ConvertToRus implements ConvertService<ArrayDeque<Integer>, String>
                     }   
                 }
                 //90-99
-                if((blocks.get(0 + i) == 9)){
+                if((blocks.get(i) == 9)){
                     if(blocks.get(1 + i) == 0){
                         convertString += wordsList.get(9).substring(0, wordsList.get(1).length()) + "носто";
                     } else {
@@ -143,11 +143,11 @@ public class ConvertToRus implements ConvertService<ArrayDeque<Integer>, String>
                     }
                 }
                 //50,60,70... 
-                if(blocks.get(0 + i) > 4 && blocks.get(0 + i) < 9){
+                if(blocks.get(i) > 4 && blocks.get(i) < 9){
                     if(blocks.get(1 + i) == 0) {
-                        convertString += wordsList.get(blocks.get(0 + i)) + "десят";
+                        convertString += wordsList.get(blocks.get(i)) + "десят";
                     }else {
-                        convertString += wordsList.get(blocks.get(0 + i)) + "десят " +  wordsList.get(blocks.get(1 + i));
+                        convertString += wordsList.get(blocks.get(i)) + "десят " +  wordsList.get(blocks.get(1 + i));
                     } 
                 } 
             }
@@ -158,59 +158,59 @@ public class ConvertToRus implements ConvertService<ArrayDeque<Integer>, String>
         THOUSANDS {
             public String declension(int lastNumber) {
                 if(lastNumber == 1)
-                    return new String(" тысяча ");
+                    return " тысяча ";
                 if(lastNumber >= 2 && lastNumber <= 4)
-                    return new String(" тысячи ");
-                if(lastNumber >=5 || lastNumber <=9 || lastNumber == 0)
-                    return new String(" тысяч ");
-                return new String(" тыс. ");
+                    return " тысячи ";
+                if(lastNumber >=5 && lastNumber <=9 || lastNumber == 0)
+                    return " тысяч ";
+                return " тыс. ";
             }
         },
         MILLIONS{
             public String declension(int lastNumber) {
                 if(lastNumber == 1)
-                    return new String(" миллион ");
+                    return " миллион ";
                 if(lastNumber >= 2 && lastNumber <= 4)
-                    return new String(" миллиона ");
-                if(lastNumber >=5 || lastNumber <=9 || lastNumber == 0)
-                    return new String(" миллионов ");
-                return new String(" млн. ");
+                    return " миллиона ";
+                if(lastNumber >=5 && lastNumber <=9 || lastNumber == 0)
+                    return " миллионов ";
+                return " млн. ";
             }
         },
         MILLIARDS{
             public String declension(int lastNumber) {
                 if(lastNumber == 1)
-                    return new String(" миллиард ");
+                    return " миллиард ";
                 if(lastNumber >= 2 && lastNumber <= 4)
-                    return new String(" миллиарда ");
-                if(lastNumber >=5 || lastNumber <=9 || lastNumber == 0)
-                    return new String(" миллиардов ");
-                return new String(" мрд. ");
+                    return " миллиарда ";
+                if(lastNumber >=5 && lastNumber <=9 || lastNumber == 0)
+                    return " миллиардов ";
+                return " мрд. ";
             }
         };
         public abstract String declension(int lastNumber);   
     }
     //Запрос разряда числа
-    private static String getNumeralString(int iterationQuantity, int iterate, int lastNum) {
+    private static String getNumeralString(int numbersOfBlocks, int iterate, int lastNum) {
         
-        if(iterate == 0 && iterationQuantity == 2) {
+        if(iterate == 0 && numbersOfBlocks == 2) {
             return Numerals.THOUSANDS.declension(lastNum);
         }
 
-        if(iterate == 0 && iterationQuantity == 3) {
+        if(iterate == 0 && numbersOfBlocks == 3) {
             return Numerals.MILLIONS.declension(lastNum);
         }
-        if(iterate == 1 && iterationQuantity == 3) {
+        if(iterate == 1 && numbersOfBlocks == 3) {
             return Numerals.THOUSANDS.declension(lastNum);
         }
 
-        if(iterate == 0 && iterationQuantity == 4) {
+        if(iterate == 0 && numbersOfBlocks == 4) {
             return Numerals.MILLIARDS.declension(lastNum);
         }
-        if(iterate == 1 && iterationQuantity == 4) {
+        if(iterate == 1 && numbersOfBlocks == 4) {
             return Numerals.MILLIONS.declension(lastNum);
         }
-        if(iterate == 2 && iterationQuantity == 4) {
+        if(iterate == 2 && numbersOfBlocks == 4) {
             return Numerals.THOUSANDS.declension(lastNum);
         }
 
@@ -218,19 +218,15 @@ public class ConvertToRus implements ConvertService<ArrayDeque<Integer>, String>
     }
     //Проверка нулей в остатке для чисел 100, 200, 1000 и т.д.
     private static boolean checkingZero(List<Integer> listOfIntegers) {
-        //if(listOfIntegers.get(1)== 0 && listOfIntegers.size() == 2)
-        //    return true;
         if(listOfIntegers.size() > 1){
-            if(listOfIntegers.get(1) == 0 && listOfIntegers.get(2) == 0)
-            return true;
+            return listOfIntegers.get(1) == 0 && listOfIntegers.get(2) == 0;
         }
         return false;
     }
     //Проверка на присутсвие в блоке только нулей
     private static boolean checkingFullZero(List<Integer> listOfIntegers) {
     if(listOfIntegers.size() == 3){
-        if(listOfIntegers.get(0) == 0 && listOfIntegers.get(1) == 0 && listOfIntegers.get(2) == 0)
-        return true;
+        return listOfIntegers.get(0) == 0 && listOfIntegers.get(1) == 0 && listOfIntegers.get(2) == 0;
     }
     return false;
     }     
