@@ -10,7 +10,7 @@ public class appRunerTest {
     public static void setUpAll() {
         System.out.println("Запуск тестирования класса appRuner");
     }
-    
+
     @Test
     void testRun() {
 

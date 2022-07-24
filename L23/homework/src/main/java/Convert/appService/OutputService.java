@@ -1,5 +1,5 @@
 package Convert.appService;
 
 public interface OutputService {
-  public void outputStrings(String ... strings);
+    public void outputStrings(String... strings);
 }

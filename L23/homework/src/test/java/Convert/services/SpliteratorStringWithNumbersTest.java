@@ -26,19 +26,19 @@ public class SpliteratorStringWithNumbersTest {
     @Test
     public void testNumberParseIntExceptionThrown() throws Exception {
         testListString = new ArrayList<>(Arrays.asList("test", "1.", "1,"));
-        testListString.forEach(v -> assertTrue(assertThrows(DoubleInputException.class, () -> 
-            SpliteratorStringWithNumbers.numberParseInt(v)).getMessage()
-            .contains("Ввод не целого числа.")));
+        testListString.forEach(v -> assertTrue(assertThrows(DoubleInputException.class, () ->
+                SpliteratorStringWithNumbers.numberParseInt(v)).getMessage()
+                .contains("Ввод не целого числа.")));
     }
 
     @Test
     void testNumberParseInt() {
         testListString = new ArrayList<>(Arrays.asList("1", "5", "99"));
-        testListInteger= new ArrayList<>(Arrays.asList(1, 5, 99));
+        testListInteger = new ArrayList<>(Arrays.asList(1, 5, 99));
         testListString.forEach(v -> {
             try {
                 assertThat(SpliteratorStringWithNumbers.numberParseInt(v))
-                .isEqualTo(testListInteger.get(testListString.indexOf(v)));
+                        .isEqualTo(testListInteger.get(testListString.indexOf(v)));
             } catch (DoubleInputException e) {
                 e.printStackTrace();
             }
@@ -52,8 +52,8 @@ public class SpliteratorStringWithNumbersTest {
         testListArrayQueue.add(new ArrayDeque<>(List.of(1)));
         testListArrayQueue.add(new ArrayDeque<>(Arrays.asList(5, 5, 5)));
         testListArrayQueue.add(new ArrayDeque<>(Arrays.asList(9, 9)));
-        
+
         testListString.forEach(v -> assertThat(SpliteratorStringWithNumbers.spliterator(v)).isNotEmpty()
-        .containsSequence(testListArrayQueue.get(testListString.indexOf(v))));
+                .containsSequence(testListArrayQueue.get(testListString.indexOf(v))));
     }
 }

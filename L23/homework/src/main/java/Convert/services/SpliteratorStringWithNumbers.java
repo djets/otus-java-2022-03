@@ -17,18 +17,18 @@ public class SpliteratorStringWithNumbers {
             try {
                 listOfIntegers.add(numberParseInt(v));
             } catch (DoubleInputException e) {
-                System.out.println((char)27 + "[31m" + "ОШИБКА: " + (char)27 + "[0m" + e.getMessage());
+                System.out.println((char) 27 + "[31m" + "ОШИБКА: " + (char) 27 + "[0m" + e.getMessage());
                 System.exit(1);
             }
         });
         return listOfIntegers;
     }
 
-    static int numberParseInt (String number) throws DoubleInputException{
+    static int numberParseInt(String number) throws DoubleInputException {
         try {
             return Integer.parseInt(number);
         } catch (Exception e) {
-            throw new DoubleInputException("Ввод не целого числа."); 
-        } 
+            throw new DoubleInputException("Ввод не целого числа.");
+        }
     }
 }
